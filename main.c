@@ -33,13 +33,18 @@ int main(void)
 
 	for(;;)
 	{
-//	    ADC12_B_startConversion(ADC12_B_BASE, ADC12_B_MEMORY_0, ADC12_B_SEQOFCHANNELS);
-//	    _delay_cycles(2000000);
+
 	}
+}
+
+#pragma vector=TIMER0_A0_VECTOR
+__interrupt void TIMER0_A0_ISR(void)
+{
+
 }
 
 #pragma vector=ADC12_B_VECTOR
 __interrupt void ADC12ISR(void)
 {
-    adc_in = ADC12MEM0;
+    //adc_in = comp_ADC_getResult(u16BaseAddress, u8MemoryBufferIndex);
 }

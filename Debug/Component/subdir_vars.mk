@@ -10,6 +10,7 @@ C_SRCS += \
 ../Component/clock.c \
 ../Component/gpio.c \
 ../Component/rtc.c \
+../Component/timer.c \
 ../Component/uart.c 
 
 C_DEPS += \
@@ -17,6 +18,7 @@ C_DEPS += \
 ./Component/clock.d \
 ./Component/gpio.d \
 ./Component/rtc.d \
+./Component/timer.d \
 ./Component/uart.d 
 
 OBJS += \
@@ -24,6 +26,7 @@ OBJS += \
 ./Component/clock.obj \
 ./Component/gpio.obj \
 ./Component/rtc.obj \
+./Component/timer.obj \
 ./Component/uart.obj 
 
 OBJS__QUOTED += \
@@ -31,6 +34,7 @@ OBJS__QUOTED += \
 "Component\clock.obj" \
 "Component\gpio.obj" \
 "Component\rtc.obj" \
+"Component\timer.obj" \
 "Component\uart.obj" 
 
 C_DEPS__QUOTED += \
@@ -38,6 +42,7 @@ C_DEPS__QUOTED += \
 "Component\clock.d" \
 "Component\gpio.d" \
 "Component\rtc.d" \
+"Component\timer.d" \
 "Component\uart.d" 
 
 C_SRCS__QUOTED += \
@@ -45,6 +50,7 @@ C_SRCS__QUOTED += \
 "../Component/clock.c" \
 "../Component/gpio.c" \
 "../Component/rtc.c" \
+"../Component/timer.c" \
 "../Component/uart.c" 
 
 

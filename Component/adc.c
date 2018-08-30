@@ -12,7 +12,7 @@
  *                  uint16_t    u16AdcMemBuffer
  *  Return      :   void
  **********************************************************************/
-void comp_Adc_Module_Initialization(uint16_t u16AdcCntrlReg, uint16_t u16AdcChannel, uint16_t u16AdcMemBuffer)
+void comp_Adc_Module_Initialization(uint16_t u16AdcChannel, uint16_t u16AdcMemBuffer)
 {
     /* Initialize the ADC12B Module */
     /*
@@ -67,4 +67,28 @@ void comp_Adc_Module_Initialization(uint16_t u16AdcCntrlReg, uint16_t u16AdcChan
     Ref_A_enableTempSensor(REF_A_BASE);
     Ref_A_setReferenceVoltage(REF_A_BASE, REF_A_VREF2_5V);
     Ref_A_enableReferenceVoltage(REF_A_BASE);
+}
+
+/**********************************************************************
+ *  Description :   Function for read ADC value from specific channel
+ *  Parameters  :   uint16_t    u16BaseAddress
+ *                  uint8_t     u8MemoryBufferIndex
+ *  Return      :   void
+ **********************************************************************/
+void comp_ADC_ReadChannel(uint16_t u16BaseAddress, uint8_t u8MemoryBufferIndex)
+{
+
+}
+
+
+/**********************************************************************
+ *  Description :   Returns the raw contents of the specified memory
+ *                  buffer
+ *  Parameters  :   uint16_t    u16BaseAddress
+ *                  uint16_t    u8MemoryBufferIndex
+ *  Return      :   uint16_t
+ **********************************************************************/
+uint16_t comp_ADC_getResult(uint16_t u16BaseAddress, uint8_t u8MemoryBufferIndex)
+{
+    return ADC12_B_getResults(u16BaseAddress, u8MemoryBufferIndex);
 }

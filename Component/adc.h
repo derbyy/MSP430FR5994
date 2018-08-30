@@ -11,6 +11,12 @@
 #include "driverlib/MSP430FR5xx_6xx/driverlib.h"
 
 /* Analog/Digital converter module initialization */
-extern void comp_ADC_Module_Initialization(uint16_t u16AdcCntrlReg, uint16_t u16AdcChannel, uint16_t u16AdcMemBuffer);
+extern void comp_ADC_Module_Initialization(uint16_t u16AdcChannel, uint16_t u16AdcMemBuffer);
+
+/* Function for read ADC value from specific channel */
+extern void comp_ADC_ReadChannel(uint16_t u16BaseAddress, uint16_t u16StartingMemBuffIdx);
+
+/* Returns the raw contents of the specified memory buffer */
+extern uint16_t comp_ADC_getResult(uint16_t u16BaseAddress, uint8_t u8MemoryBufferIndex);
 
 #endif /* COMPONENT_ADC_H_ */
