@@ -14,7 +14,7 @@
 extern void comp_ADC_Module_Initialization(uint16_t u16AdcChannel, uint16_t u16AdcMemBuffer);
 
 /* Function for read ADC value from specific channel */
-extern void comp_ADC_ReadChannel(uint16_t u16BaseAddress, uint16_t u16StartingMemBuffIdx);
+extern void comp_ADC_ReadChannel(uint16_t u16AdcChannel, uint8_t u8MemoryBufferIndex);
 
 /* Returns the raw contents of the specified memory buffer */
 extern uint16_t comp_ADC_getResult(uint16_t u16BaseAddress, uint8_t u8MemoryBufferIndex);

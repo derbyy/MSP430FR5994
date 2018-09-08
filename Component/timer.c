@@ -9,10 +9,10 @@
 
 /**********************************************************************
  *  Description :   Function for initialization Timer module
- *  Parameters  :   void
+ *  Parameters  :   uint16_t    u16BaseAddress
  *  Return      :   void
  **********************************************************************/
-void comp_TimerInitialization(void)
+void comp_TimerA_Initialization(uint16_t u16BaseAddress)
 {
     /* Initialize Timer_A module */
     Timer_A_initUpModeParam timerParam = {0};
@@ -23,10 +23,7 @@ void comp_TimerInitialization(void)
     timerParam.captureCompareInterruptEnable_CCR0_CCIE |= TIMER_A_CCIE_CCR0_INTERRUPT_ENABLE;
     timerParam.timerClear |= TIMER_A_DO_CLEAR;
     timerParam.startTimer = true;
-    Timer_A_initUpMode(TIMER_A0_BASE, &timerParam);
-
-    /* Enter LPM3. Delay for Ref to settle */
-    __bis_SR_register(LPM3_bits | GIE);
+    Timer_A_initUpMode(u16BaseAddress, &timerParam);
 }
 
 

@@ -11,7 +11,7 @@
 #include "driverlib/MSP430FR5xx_6xx/driverlib.h"
 
 /* Function for initialization Timer module */
-extern void comp_TimerA_Initialization(void);
+extern void comp_TimerA_Initialization(uint16_t u16BaseAddress);
 
 /* Sets the value of the capture-compare register */
 extern void comp_TimerA_SetCompValue(uint16_t u16BaseAddr, uint16_t u16CmpRegister, uint16_t u16CmpValue);

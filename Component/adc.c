@@ -5,6 +5,7 @@
  *  Author	  : Martin
  */
 #include "adc.h"
+#include "timer.h"
 
 /**********************************************************************
  *  Description :   Analog/Digital converter module initialization
@@ -56,28 +57,55 @@ void comp_Adc_Module_Initialization(uint16_t u16AdcChannel, uint16_t u16AdcMemBu
     adc_confMemoryParam.differentialModeSelect |= ADC12_B_DIFFERENTIAL_MODE_DISABLE;
     ADC12_B_configureMemory(ADC12_B_BASE, &adc_confMemoryParam);
 
-    /* Clear memory buffer 0 interrupt */
-    ADC12_B_clearInterrupt(ADC12_B_BASE, 0, ADC12_B_IFG0);
-
-    /* Enable memory buffer 0 interrupt */
-    ADC12_B_enableInterrupt(ADC12_B_BASE, ADC12_B_IE0, 0, 0);
-
     /* Configure internal reference to 2.5V */
     while(Ref_A_isRefGenBusy(REF_A_BASE));
     Ref_A_enableTempSensor(REF_A_BASE);
     Ref_A_setReferenceVoltage(REF_A_BASE, REF_A_VREF2_5V);
     Ref_A_enableReferenceVoltage(REF_A_BASE);
+
+    /* Clear memory buffer 0 interrupt */
+    ADC12_B_clearInterrupt(ADC12_B_BASE, 0, ADC12_B_IFG0);
+
+    /* Enable memory buffer 0 interrupt */
+    ADC12_B_enableInterrupt(ADC12_B_BASE, ADC12_B_IE0, 0, 0);
 }
 
 /**********************************************************************
  *  Description :   Function for read ADC value from specific channel
- *  Parameters  :   uint16_t    u16BaseAddress
+ *  Parameters  :   uint16_t    u16AdcChannel
  *                  uint8_t     u8MemoryBufferIndex
  *  Return      :   void
  **********************************************************************/
-void comp_ADC_ReadChannel(uint16_t u16BaseAddress, uint8_t u8MemoryBufferIndex)
+void comp_ADC_ReadChannel(uint16_t u16AdcChannel, uint8_t u8MemoryBufferIndex)
 {
+    /* Initialize ADC12_B Module */
+    comp_ADC_Module_Initialization(u16AdcChannel, u8MemoryBufferIndex);
 
+    /* Initialize Timer module */
+    comp_TimerA_Initialization(TIMER_A0_BASE);
+
+    /* Enter LPM3, wait for ~1/8 sec timer */
+    __bis_SR_register(LPM3_bits | GIE);
+
+    /* Change timer delay to 1/8 second */
+    Timer_A_setCompareValue(TIMER_A0_BASE, TIMER_A_CAPTURECOMPARE_REGISTER_0, 0x1000);
+
+    /* Enter LPM3, wait for ~1/8 sec timer */
+    __bis_SR_register(LPM3_bits | GIE);
+
+    /* Enable/Start sampling and conversion */
+    //ADC12_B_startConversion(ADC12_B_BASE, u8MemoryBufferIndex, ADC12_B_SINGLECHANNEL);
+
+    /* Wait for conversion is done */
+    __bis_SR_register(LPM3_bits | GIE);
+    __bic_SR_register(GIE);
+
+    /* Set breakpoint here */
+    __no_operation();
+
+    /* Disable ADC12 Module and Timer_A0 module */
+    ADC12_B_disable(ADC12_B_BASE);
+    Timer_A_stop(TIMER_A0_BASE);
 }
 
 
