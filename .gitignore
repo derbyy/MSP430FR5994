@@ -1,3 +1,6 @@
 
 *.d
 *.obj
+Debug/MSP430FR5994.map
+Debug/MSP430FR5994.map
+Debug/MSP430FR5994.out

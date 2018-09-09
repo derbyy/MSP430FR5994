@@ -8,8 +8,6 @@
 #include <string.h>
 
 volatile unsigned int adc_in = 0;
-volatile bool bNeedMeasure = false;
-volatile bool readFlag = false;
 
 /***************************************************************************
  * The main procedure of MSP430FR5994 Firmware for MPPT regulator.
@@ -39,37 +37,29 @@ int main(void)
 
 	for(;;)
 	{
-	    if(readFlag == true)
-	    {
-
-	    }
-	    if(bNeedMeasure == true)
-	    {
-	        /* Enable/Start sampling and conversion */
-	        ADC12_B_startConversion(ADC12_B_BASE, ADC12_B_MEMORY_0, ADC12_B_SINGLECHANNEL);
-	        bNeedMeasure = false;
-
-	        /* Wait for conversion is done */
-	        __bis_SR_register(LPM3_bits | GIE);
-	        __bic_SR_register(GIE);
-	    }
+	    comp_ADC_ReadChannel(ADC12INCH_12, ADC12_B_MEMORY_0);
+	    __delay_cycles(1000000);
 	}
 }
 
 #pragma vector=TIMER0_A1_VECTOR
 __interrupt void TIMER0_A1_ISR(void)
 {
-    readFlag = true;
+    /* Exit active CPU */
+    __bic_SR_register_on_exit(LPM3_bits);
 }
 
 #pragma vector=TIMER0_A0_VECTOR
 __interrupt void TIMER0_A0_ISR(void)
 {
-    bNeedMeasure = true;
+    /* Exit active CPU */
+    __bic_SR_register_on_exit(LPM3_bits);
 }
 
 #pragma vector=ADC12_B_VECTOR
 __interrupt void ADC12ISR(void)
 {
-    adc_in = comp_ADC_getResult(ADC12_B_BASE, ADC12_B_MEMORY_0);
+    adc_in = ADC12MEM0;
+    ADC12IFGR0 &= ~ADC12IFG0;             // Clear interrupt flag
+    __bic_SR_register_on_exit(LPM3_bits); // Exit active CPU
 }

@@ -18,7 +18,7 @@ void comp_TimerA_Initialization(uint16_t u16BaseAddress)
     Timer_A_initUpModeParam timerParam = {0};
     timerParam.clockSource |= TIMER_A_CLOCKSOURCE_ACLK;
     timerParam.clockSourceDivider |= TIMER_A_CLOCKSOURCE_DIVIDER_1;
-    timerParam.timerPeriod = 0xFF;
+    timerParam.timerPeriod = 0x20;
     timerParam.timerInterruptEnable_TAIE |= TIMER_A_TAIE_INTERRUPT_DISABLE;
     timerParam.captureCompareInterruptEnable_CCR0_CCIE |= TIMER_A_CCIE_CCR0_INTERRUPT_ENABLE;
     timerParam.timerClear |= TIMER_A_DO_CLEAR;
