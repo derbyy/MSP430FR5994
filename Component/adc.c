@@ -81,15 +81,6 @@ void comp_ADC_ReadChannel(uint16_t u16AdcChannel, uint8_t u8MemoryBufferIndex)
     /* Initialize ADC12_B Module */
     comp_ADC_Module_Initialization(u16AdcChannel, u8MemoryBufferIndex);
 
-    /* Initialize Timer module */
-    //comp_TimerA_Initialization(TIMER_A0_BASE);
-
-    /* Change timer delay to 1/8 second */
-    //Timer_A_setCompareValue(TIMER_A0_BASE, TIMER_A_CAPTURECOMPARE_REGISTER_0, 0x1000);
-
-    /* Enter LPM3, wait for ~1/8 sec timer */
-    //__bis_SR_register(LPM3_bits | GIE);
-
     /* Enable/Start sampling and conversion */
     ADC12_B_startConversion(ADC12_B_BASE, u8MemoryBufferIndex, ADC12_B_SINGLECHANNEL);
 
@@ -100,9 +91,8 @@ void comp_ADC_ReadChannel(uint16_t u16AdcChannel, uint8_t u8MemoryBufferIndex)
     /* Set breakpoint here */
     __no_operation();
 
-    /* Disable ADC12 Module and Timer_A0 module */
+   /* Disable ADC12 Module and Timer_A0 module */
     ADC12_B_disable(ADC12_B_BASE);
-    //Timer_A_stop(TIMER_A0_BASE);
 }
 
 

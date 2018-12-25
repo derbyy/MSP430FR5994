@@ -14,11 +14,11 @@
 void comp_Clock_Module_Initialization(void)
 {
     /* Set DCO frequency to 8 MHz */
-    CS_setDCOFreq( CS_DCORSEL_0, CS_DCOFSEL_6 );
+    CS_setDCOFreq( CS_DCORSEL_0, DCOFSEL_6 );
     /* Set external clock frequency to 32.768 KHz */
-    CS_setExternalClockSource( 32768, 0 );
+    CS_setExternalClockSource( CLOCK_SOURCE_EXTERNAL_HIGH, CLOCK_SOURCE_EXTERNAL_LOW);
     /* Set ACLK = LFXT */
-    CS_initClockSignal( CS_ACLK, CS_LFXTCLK_SELECT, CS_CLOCK_DIVIDER_8 );
+    CS_initClockSignal( CS_ACLK, CS_LFXTCLK_SELECT, CS_CLOCK_DIVIDER_1 );
     /* Set SMCLK = DCO with frequency divider of 1 */
     CS_initClockSignal( CS_SMCLK, CS_DCOCLK_SELECT, CS_CLOCK_DIVIDER_8 );
     /* Set MCLK = DCO with frequency divider of 1 */

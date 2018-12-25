@@ -12,5 +12,6 @@
 
 /* Universal Asynchronous Serial Bus module initialization */
 extern void comp_UART_Module_Initialization(uint16_t u16UartModule);
+extern void comp_UART_SendData(int value);
 
 #endif /* COMPONENT_UART_H_ */

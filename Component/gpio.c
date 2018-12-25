@@ -16,8 +16,8 @@ void comp_GPIO_Module_Initialization(void)
     /* Set all GPIO pins to output low for low power */
     comp_GPIO_setOutputLowOnPin( GPIO_PORT_P1, GPIO_PIN0 | GPIO_PIN1 | GPIO_PIN2 | GPIO_PIN3 | GPIO_PIN4 | GPIO_PIN5 | GPIO_PIN6 | GPIO_PIN7 );
     comp_GPIO_setOutputLowOnPin( GPIO_PORT_P2, GPIO_PIN0 | GPIO_PIN1 | GPIO_PIN2 | GPIO_PIN3 | GPIO_PIN4 | GPIO_PIN5 | GPIO_PIN6 | GPIO_PIN7 );
-    comp_GPIO_setOutputLowOnPin( GPIO_PORT_P3, GPIO_PIN1 | GPIO_PIN1 | GPIO_PIN2 | GPIO_PIN3 | GPIO_PIN4 | GPIO_PIN5 | GPIO_PIN6 | GPIO_PIN7 );
-    comp_GPIO_setOutputLowOnPin( GPIO_PORT_P4, GPIO_PIN1 | GPIO_PIN2 | GPIO_PIN3 | GPIO_PIN4 | GPIO_PIN5 | GPIO_PIN6 | GPIO_PIN7 );
+    comp_GPIO_setOutputLowOnPin( GPIO_PORT_P3, GPIO_PIN0 | GPIO_PIN1 | GPIO_PIN2 | GPIO_PIN3 | GPIO_PIN4 | GPIO_PIN5 | GPIO_PIN6 | GPIO_PIN7 );
+    comp_GPIO_setOutputLowOnPin( GPIO_PORT_P4, GPIO_PIN0 | GPIO_PIN1 | GPIO_PIN2 | GPIO_PIN3 | GPIO_PIN4 | GPIO_PIN5 | GPIO_PIN6 | GPIO_PIN7 );
     comp_GPIO_setOutputLowOnPin( GPIO_PORT_P5, GPIO_PIN0 | GPIO_PIN1 | GPIO_PIN2 | GPIO_PIN3 | GPIO_PIN4 | GPIO_PIN5 | GPIO_PIN6 | GPIO_PIN7 );
     comp_GPIO_setOutputLowOnPin( GPIO_PORT_P6, GPIO_PIN0 | GPIO_PIN1 | GPIO_PIN2 | GPIO_PIN3 | GPIO_PIN4 | GPIO_PIN5 | GPIO_PIN6 | GPIO_PIN7 );
     comp_GPIO_setOutputLowOnPin( GPIO_PORT_P7, GPIO_PIN0 | GPIO_PIN1 | GPIO_PIN2 | GPIO_PIN3 | GPIO_PIN4 | GPIO_PIN5 | GPIO_PIN6 | GPIO_PIN7 );
@@ -34,22 +34,22 @@ void comp_GPIO_Module_Initialization(void)
     comp_GPIO_setAsOutputPin( GPIO_PORT_P7, GPIO_PIN0 | GPIO_PIN1 | GPIO_PIN2 | GPIO_PIN3 | GPIO_PIN4 | GPIO_PIN5 | GPIO_PIN6 | GPIO_PIN7 );
     comp_GPIO_setAsOutputPin( GPIO_PORT_P8, GPIO_PIN0 | GPIO_PIN1 | GPIO_PIN2 | GPIO_PIN3 | GPIO_PIN4 | GPIO_PIN5 | GPIO_PIN6 | GPIO_PIN7 );
     comp_GPIO_setAsOutputPin( GPIO_PORT_PJ, GPIO_PIN0 | GPIO_PIN1 | GPIO_PIN2 | GPIO_PIN3 | GPIO_PIN4 | GPIO_PIN5 | GPIO_PIN6 | GPIO_PIN7 |
-                         GPIO_PIN8 | GPIO_PIN9 | GPIO_PIN10 | GPIO_PIN11 | GPIO_PIN12 | GPIO_PIN13 | GPIO_PIN14 | GPIO_PIN15 );
+                              GPIO_PIN8 | GPIO_PIN9 | GPIO_PIN10 | GPIO_PIN11 | GPIO_PIN12 | GPIO_PIN13 | GPIO_PIN14 | GPIO_PIN15 );
 
     /* Setup P2.1 to UART_1 function */
-    GPIO_setOutputLowOnPin( GPIO_PORT_P2, GPIO_PIN0 );
-    GPIO_setAsOutputPin( GPIO_PORT_P2, GPIO_PIN0 );
-    GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P2, GPIO_PIN1, GPIO_SECONDARY_MODULE_FUNCTION );
+//    GPIO_setOutputLowOnPin( GPIO_PORT_P2, GPIO_PIN0 );
+//    GPIO_setAsOutputPin( GPIO_PORT_P2, GPIO_PIN0 );
+//    GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P2, GPIO_PIN1, GPIO_SECONDARY_MODULE_FUNCTION );
 
     /* Setup P6.1 to UART_3 funtion */
-    GPIO_setOutputLowOnPin( GPIO_PORT_P6, GPIO_PIN0 );
-    GPIO_setAsOutputPin( GPIO_PORT_P6, GPIO_PIN0 );
-    GPIO_setAsPeripheralModuleFunctionInputPin( GPIO_PORT_P6, GPIO_PIN1, GPIO_PRIMARY_MODULE_FUNCTION );
+//    GPIO_setOutputLowOnPin( GPIO_PORT_P6, GPIO_PIN0 );
+//    GPIO_setAsOutputPin( GPIO_PORT_P6, GPIO_PIN0 );
+//    GPIO_setAsPeripheralModuleFunctionInputPin( GPIO_PORT_P6, GPIO_PIN1, GPIO_PRIMARY_MODULE_FUNCTION );
 
     /* Sets up P3.0, P3.1, P3.2 to ADC function */
-    GPIO_setAsInputPin(GPIO_PORT_P3, GPIO_PIN0);
-    GPIO_setAsInputPin(GPIO_PORT_P3, GPIO_PIN1);
-    GPIO_setAsInputPin(GPIO_PORT_P3, GPIO_PIN2);
+      GPIO_setAsInputPin(GPIO_PORT_P3, GPIO_PIN0);
+//    GPIO_setAsInputPin(GPIO_PORT_P3, GPIO_PIN1);
+//    GPIO_setAsInputPin(GPIO_PORT_P3, GPIO_PIN2);
 
     /* Set PJ.4 and PJ.5 as Primary Module Function Input, LFXT */
     comp_GPIO_setModeOnInputPin(GPIO_PORT_PJ, GPIO_PIN4 + GPIO_PIN5, GPIO_PRIMARY_MODULE_FUNCTION );

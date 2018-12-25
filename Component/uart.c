@@ -5,6 +5,8 @@
  *  Author	  : Martin
  */
 #include "uart.h"
+#include <string.h>
+#include <stdio.h>
 
 /****************************************************************************
  *  Description :   Universal Asynchronous Serial Bus module initialization
@@ -13,6 +15,11 @@
  ****************************************************************************/
 void comp_UART_Module_Initialization(uint16_t u16UartModule)
 {
+//    /* Set pin to UART mode */
+    GPIO_setOutputLowOnPin( GPIO_PORT_P2, GPIO_PIN0 );
+    GPIO_setAsOutputPin( GPIO_PORT_P2, GPIO_PIN0 );
+    GPIO_setAsPeripheralModuleFunctionInputPin(GPIO_PORT_P2, GPIO_PIN1, GPIO_SECONDARY_MODULE_FUNCTION );
+
     /* Configure UART 9600 bit per second at 8MHz clock source */
     EUSCI_A_UART_initParam param = { 0 };
     param.selectClockSource |= EUSCI_A_UART_CLOCKSOURCE_SMCLK;
@@ -41,6 +48,29 @@ void comp_UART_Module_Initialization(uint16_t u16UartModule)
     EUSCI_A_UART_enableInterrupt( u16UartModule, EUSCI_A_UART_RECEIVE_INTERRUPT );
 
     /* Enable global interrupt */
-    __enable_interrupt();
+    //__enable_interrupt();
 }
+
+void comp_UART_SendData(int value)
+{
+    uint8_t cnt;
+    char buffer[ 100 ];
+    memset( buffer, 0, sizeof( buffer ) );
+
+    snprintf( buffer, sizeof( buffer ), "%d\r\n", value );
+    // Select UART TXD on P2.0
+    GPIO_setAsPeripheralModuleFunctionOutputPin(
+    GPIO_PORT_P2, GPIO_PIN0, GPIO_SECONDARY_MODULE_FUNCTION );
+
+    for( cnt = 0; cnt < strlen( buffer ); cnt++ )
+    {
+        // Send Ackknowledgement to Host PC
+        EUSCI_A_UART_transmitData( EUSCI_A0_BASE, buffer[ cnt ] );
+    }
+
+    while( EUSCI_A_UART_queryStatusFlags( EUSCI_A0_BASE, EUSCI_A_UART_BUSY ) );
+
+    GPIO_setOutputLowOnPin( GPIO_PORT_P2, GPIO_PIN0 );
+}
+
 
