@@ -55,3 +55,32 @@ void mppt_vReadVoltage()
     mppt_u16ADCSupercapVoltageValue_2 = comp_ADC_getResult(ADC12_B_BASE, ADC12_B_MEMORY_0);
 }
 
+/*************************************************************************************
+ *  Description :   This function get ADC value of solar panel
+ *  Parameters  :   void
+ *  Return      :   uint16_t
+ *************************************************************************************/
+uint16_t mppt_u16GetADCSolarVoltageValue()
+{
+    return mppt_u16ADCSolarVoltageValue;
+}
+
+/*************************************************************************************
+ *  Description :   This function get ADC value of supercapacitor bank 1
+ *  Parameters  :   void
+ *  Return      :   uint16_t
+ *************************************************************************************/
+uint16_t mppt_u16GetADCSupercapVoltageValue_1()
+{
+    return mppt_u16ADCSupercapVoltageValue_1;
+}
+
+/*************************************************************************************
+ *  Description :   This function get ADC value of supercapacitor bank 2
+ *  Parameters  :   void
+ *  Return      :   uint16_t
+ *************************************************************************************/
+uint16_t mppt_u16GetADCSupercapVoltageValue_2()
+{
+    return mppt_u16ADCSupercapVoltageValue_2;
+}
