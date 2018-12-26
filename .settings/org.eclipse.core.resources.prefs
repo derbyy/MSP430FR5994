@@ -1,6 +1,8 @@
 eclipse.preferences.version=1
 encoding//Debug/Component/subdir_rules.mk=UTF-8
 encoding//Debug/Component/subdir_vars.mk=UTF-8
+encoding//Debug/MPPT/subdir_rules.mk=UTF-8
+encoding//Debug/MPPT/subdir_vars.mk=UTF-8
 encoding//Debug/driverlib/MSP430FR5xx_6xx/subdir_rules.mk=UTF-8
 encoding//Debug/driverlib/MSP430FR5xx_6xx/subdir_vars.mk=UTF-8
 encoding//Debug/makefile=UTF-8

@@ -5,7 +5,6 @@
  *  Author	  : Martin
  */
 #include "adc.h"
-#include "timer.h"
 
 /**********************************************************************
  *  Description :   Analog/Digital converter module initialization
@@ -59,7 +58,6 @@ void comp_ADC_Module_Initialization(uint16_t u16AdcChannel, uint16_t u16AdcMemBu
 
     /* Configure internal reference to 2.5V */
     while(Ref_A_isRefGenBusy(REF_A_BASE));
-    Ref_A_enableTempSensor(REF_A_BASE);
     Ref_A_setReferenceVoltage(REF_A_BASE, REF_A_VREF2_5V);
     Ref_A_enableReferenceVoltage(REF_A_BASE);
 

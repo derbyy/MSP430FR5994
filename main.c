@@ -1,9 +1,4 @@
-#include "Component/clock.h"
-#include "Component/gpio.h"
-#include "Component/rtc.h"
-#include "Component/uart.h"
-#include "Component/adc.h"
-#include "Component/timer.h"
+#include "MPPT/mppt.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -49,14 +44,14 @@ int main(void)
 	//comp_RTC_Module_Initialization(&m_sCalendar);
 
 	/* Initialize Timer_A0 module */
-	comp_TimerA_Initialization(TIMER_A0_BASE);
+	comp_TimerA_Initialization(TIMER_A0_BASE, TIMER0_A0_COMP_VALUE);
 
 	while(1)
 	{
 	    /* Enter into LPM3 power save mode and wait for interrupts */
         __bis_SR_register(LPM3_bits | GIE);
         __no_operation();
-        comp_ADC_ReadChannel(ADC12INCH_12, ADC12_B_MEMORY_0);
+        mppt_vReadVoltage();
 	}
 }
 
@@ -68,10 +63,17 @@ __interrupt void TIMER0_A0_ISR(void)
     __bic_SR_register_on_exit(LPM3_bits);
 }
 
+#pragma vector=TIMER0_A1_VECTOR
+__interrupt void TIMER0_A1_ISR(void)
+{
+    /* Exit active CPU */
+    __bic_SR_register_on_exit(LPM3_bits);
+}
+
 #pragma vector=ADC12_B_VECTOR
 __interrupt void ADC12ISR(void)
 {
-    adc_in = ADC12MEM0;
+    //adc_in = ADC12MEM0;
     ADC12IFGR0 &= ~ADC12IFG0;             // Clear interrupt flag
     __bic_SR_register_on_exit(LPM3_bits); // Exit active CPU
 }

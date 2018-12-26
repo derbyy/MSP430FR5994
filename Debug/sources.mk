@@ -113,5 +113,6 @@ PDE_DEPS__QUOTED :=
 SUBDIRS := \
 . \
 Component \
+MPPT \
 driverlib/MSP430FR5xx_6xx \
 

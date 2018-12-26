@@ -47,9 +47,13 @@ void comp_GPIO_Module_Initialization(void)
 //    GPIO_setAsPeripheralModuleFunctionInputPin( GPIO_PORT_P6, GPIO_PIN1, GPIO_PRIMARY_MODULE_FUNCTION );
 
     /* Sets up P3.0, P3.1, P3.2 to ADC function */
-      GPIO_setAsInputPin(GPIO_PORT_P3, GPIO_PIN0);
-//    GPIO_setAsInputPin(GPIO_PORT_P3, GPIO_PIN1);
-//    GPIO_setAsInputPin(GPIO_PORT_P3, GPIO_PIN2);
+    GPIO_setAsInputPin(GPIO_PORT_P3, GPIO_PIN0);
+    GPIO_setAsInputPin(GPIO_PORT_P3, GPIO_PIN1);
+    GPIO_setAsInputPin(GPIO_PORT_P3, GPIO_PIN2);
+
+    /* Sets up P3.4 and P3.7 to High */
+    comp_GPIO_setOutputHighOnPin(GPIO_PORT_P3, GPIO_PIN4);
+    comp_GPIO_setOutputHighOnPin(GPIO_PORT_P3, GPIO_PIN7);
 
     /* Set PJ.4 and PJ.5 as Primary Module Function Input, LFXT */
     comp_GPIO_setModeOnInputPin(GPIO_PORT_PJ, GPIO_PIN4 + GPIO_PIN5, GPIO_PRIMARY_MODULE_FUNCTION );
