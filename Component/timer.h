@@ -13,10 +13,13 @@
 /* Compare value for ACLK timer ~2 sec */
 #define TIMER0_A0_COMP_VALUE                 0xFFFF
 
-/* Function for initialization Timer module */
-extern void comp_TimerA_Initialization(uint16_t u16BaseAddress, uint16_t u16CompValue);
+/* Function for initialization of TimerA module into up mode */
+extern void comp_TimerA_vUpModeInitialization(uint16_t u16BaseAddress);
+
+/* Function for set up Timer module into up mode */
+extern void comp_TimerA_vSetUpTimer(uint16_t u16BaseAddress, uint16_t u16compRegister, uint16_t u16CompValue);
 
 /* Sets the value of the capture-compare register */
-extern void comp_Timer_A_SetCompValue(uint16_t u16BaseAddr, uint16_t u16CmpRegister, uint16_t u16CmpValue);
+extern void comp_Timer_A_vSetCompValue(uint16_t u16BaseAddr, uint16_t u16CmpRegister, uint16_t u16CmpValue);
 
 #endif /* COMPONENT_TIMER_H_ */
