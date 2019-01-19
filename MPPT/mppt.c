@@ -34,7 +34,7 @@ void mppt_vReadVoltage()
     __bis_SR_register(LPM3_bits | GIE);
 
     /* Cut off load from solar panel */
-    //comp_GPIO_setOutputLowOnPin(GPIO_PORT_P3, GPIO_PIN4);
+    comp_GPIO_setOutputLowOnPin(GPIO_PORT_P1, GPIO_PIN4);
 
     /* Set up Timet A1 compare value ~30ms */
     comp_Timer_A_vSetCompValue(TIMER_A1_BASE, TIMER_A_CAPTURECOMPARE_REGISTER_1, 0x0400);
@@ -52,7 +52,7 @@ void mppt_vReadVoltage()
     mppt_u16ADCSolarVoltageValue = comp_ADC_getResult(ADC12_B_BASE, ADC12_B_MEMORY_0);
 
     /* Connect load to solar panel */
-    //comp_GPIO_setOutputHighOnPin(GPIO_PORT_P3, GPIO_PIN4);
+    comp_GPIO_setOutputHighOnPin(GPIO_PORT_P1, GPIO_PIN4);
 
     /* Read voltage on Supercapacitor bank 1 */
     comp_ADC_ReadChannel(ADC12INCH_12, ADC12_B_MEMORY_0);

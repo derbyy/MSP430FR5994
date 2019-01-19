@@ -51,9 +51,9 @@ void comp_GPIO_Module_Initialization(void)
     GPIO_setAsInputPin(GPIO_PORT_P3, GPIO_PIN1);
     GPIO_setAsInputPin(GPIO_PORT_P3, GPIO_PIN2);
 
-    /* Sets up P3.4 and P3.7 to High */
-    comp_GPIO_setOutputHighOnPin(GPIO_PORT_P3, GPIO_PIN4);
-    comp_GPIO_setOutputHighOnPin(GPIO_PORT_P3, GPIO_PIN7);
+    /* Sets up P1.4 and P1.5 to High */
+    comp_GPIO_setOutputHighOnPin(GPIO_PORT_P1, GPIO_PIN4);
+    comp_GPIO_setOutputHighOnPin(GPIO_PORT_P1, GPIO_PIN5);
 
     /* Set PJ.4 and PJ.5 as Primary Module Function Input, LFXT */
     comp_GPIO_setModeOnInputPin(GPIO_PORT_PJ, GPIO_PIN4 + GPIO_PIN5, GPIO_PRIMARY_MODULE_FUNCTION );

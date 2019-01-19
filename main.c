@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-volatile uint8_t u8TimerA0Counter = 0;
+
 /***************************************************************************
  * The _system_pre_init procedure of MSP430FR5994 Firmware for MPPT regulator.
  ***************************************************************************/
@@ -66,7 +66,6 @@ __interrupt void TIMER0_A0_ISR(void)
 #pragma vector=TIMER1_A0_VECTOR
 __interrupt void TIMER1_A0_ISR(void)
 {
-    u8TimerA0Counter++;
     /* Exit active CPU */
     __bic_SR_register_on_exit(LPM3_bits);
 }
